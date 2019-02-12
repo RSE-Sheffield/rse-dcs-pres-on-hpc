@@ -352,7 +352,8 @@ High-level APIs for working with large datasets, possibly out of core:
 ---
 ## Learning more / getting help
 
-* Docs: `https://docs.hpc.shef.ac.uk` (not a tutorial)
+* Docs: [http://docs.hpc.shef.ac.uk](http://docs.hpc.shef.ac.uk) (not a tutorial)
+    * For DCS nodes: [http://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](http://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
 * **Workshops**
     * RSE team runs various workshops on fundamentals:
         * UNIX shell, Git, Python/R/MATLAB, relational databases...
@@ -361,7 +362,7 @@ High-level APIs for working with large datasets, possibly out of core:
     * CiCS also offer training in C/C++, Fortran, Python, MATLAB and HPC
 
 ---
-## Research software: learning more / getting help
+## Learning more / getting help
 
 * **Talks**
     * RSE seminar series 
