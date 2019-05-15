@@ -89,7 +89,7 @@ but...
 - 5x nodes w/ 768GB RAM and 1TB SSDs
 
 ### Bessemer
-- 7x GPU nodes for Bessemer (4x V100 with NVLink & 192GB memory)
+- 8x GPU nodes for Bessemer (4x V100 with NVLink & 192GB memory)
 
 ---
 ## Cluster structure
@@ -343,7 +343,8 @@ High-level APIs for working with large datasets, possibly out of core:
     - Want newer GPUs/processors?
 ---
 - Options
-    - JADE: Tier 2 HPC facility for Deep Learning (*lots* of GPUs)
+    - JADE: Tier 2 HPC facility for Deep Learning
+        - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards
     - Other Tier 2 facilities
     - Tier 1 HPC facility: Archer
     - Cloud (AWS, Azure, GCP etc)
