@@ -78,7 +78,7 @@ but...
     - Non-std hardware specs
     - Less contention (sometimes!)
   - DCS node specs:
-     - 1x node with **8x NVIDIA P100 GPUs** & 512GB RAM
+     - 1x node with **8x NVIDIA P100 GPUs** & 512GB RAM (NB 1x GPU currently faulty)
      - 3x nodes with **768GB RAM** each
      - 4x nodes with **32 cores** each
 
