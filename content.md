@@ -8,6 +8,8 @@ Will Furnass
 
 Research Software Engineering team, University of Sheffield
 
+[https://rse.shef.ac.uk/rse-dcs-pres-on-hpc/](https://rse.shef.ac.uk/rse-dcs-pres-on-hpc/)
+
 ---
 ## Outline
 
