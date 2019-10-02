@@ -8,8 +8,6 @@ Will Furnass
 
 Research Software Engineering team, University of Sheffield
 
-2019-02-12
-
 ---
 ## Outline
 
@@ -79,17 +77,18 @@ but...
     - Less contention (sometimes!)
   - DCS node specs:
      - 1x node with **8x NVIDIA P100 GPUs** & 512GB RAM (NB 1x GPU currently faulty)
-     - 3x nodes with **768GB RAM** each
+     - 8x nodes with **768GB RAM** each, 5 with 1TB SSDs
      - 4x nodes with **32 cores** each
+     - [https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
 
 ---
 ## DCS HPC resources (soon)
 
-### ShARC 
-- 5x nodes w/ 768GB RAM and 1TB SSDs
-
 ### Bessemer
-- 8x GPU nodes for Bessemer (4x V100 with NVLink & 192GB memory)
+
+- 8x GPU nodes for Bessemer 
+    - 4x NVIDIA V100 GPUs with NVLink 
+    - 192 GB RAM
 
 ---
 ## Cluster structure
@@ -99,8 +98,16 @@ but...
 ---
 ## Jupyter
 
-- Can also run Jupyter Notebooks on cluster.
-- Ask for more info
+Can also run Jupyter Notebooks on cluster!
+
+<div style="text-align: center">
+    <a href="https://github.com/RSE-Sheffield/hi-perf-ipynb/blob/master/tutorials/02-multiprocessing.ipynb">
+        <img src="images/jupyter.png" alt="Example Jupyter notebook" width="80%" align="center" />
+    </a>
+</div>
+
+
+Ask for more info
 
 ---
 ## Moving data to/from HPC
@@ -353,8 +360,8 @@ High-level APIs for working with large datasets, possibly out of core:
 ---
 ## Learning more / getting help
 
-* Docs: [http://docs.hpc.shef.ac.uk](http://docs.hpc.shef.ac.uk) (not a tutorial)
-    * For DCS nodes: [http://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](http://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
+* Docs: [https://docs.hpc.shef.ac.uk](https://docs.hpc.shef.ac.uk) (not a tutorial)
+    * For DCS nodes: [https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
 * **Workshops**
     * RSE team runs various workshops on fundamentals:
         * UNIX shell, Git, Python/R/MATLAB, relational databases...
@@ -385,8 +392,8 @@ For more info (inc. **mailing list** and events schedule) see [https://rse.shef.
 ---
 ## The RSE team
 
-* 9 RSEs
-* Team kick-started by 2x EPSRC fellowships
+* 10 RSEs
+* Team kick-started by 2x EPSRC RSE fellowships
 * Based in Computer Science
 * Some current projects:
     * High-performance **agent-based modelling** (CUDA)
