@@ -66,9 +66,12 @@ but...
 ---
 ## UoS Clusters
 
-- ShARC: newer UoS cluster
-- Iceberg: older UoS cluster
-- Bessemer: next UoS cluster
+- Bessemer: 
+    - Newest hardware
+    - Best for single-node jobs
+- ShARC: 
+    - Good for multi-node jobs as has high-bandwidth, low-latency interconnects
+- Iceberg: older UoS cluster (partly deprecated)
 
 ---
 ## DCS HPC resources (now)
@@ -352,11 +355,19 @@ High-level APIs for working with large datasets, possibly out of core:
     - Want newer GPUs/processors?
 ---
 - Options
-    - JADE: Tier 2 HPC facility for Deep Learning
-        - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards
-    - Other Tier 2 facilities
-    - Tier 1 HPC facility: Archer
-    - Cloud (AWS, Azure, GCP etc)
+    - **JADE**: Tier 2 HPC facility for Deep Learning
+        - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards (NVLINK between GPUs in nodes)
+        - To see [£5.5M upgrade in 2020](https://www.hpcwire.com/off-the-wire/oxford-wins-5-5-million-epsrc-funding-for-hpc-will-lead-jade-2/) (**JADE 2**)
+    - **NICE19**: new N8 Tier 2 HPC facility for distributed DL/ML (summer/autumn 2020)
+        - 32x IBM AC922 nodes (2x POWER9 CPU; 4x V100 GPU; NVLINK between GPUs and CPUs)
+        - 6x IBM IC922 nodes (6x with T4 TPUs; 2x with FPGAs)
+        - 100Gbps Infiniband EDR interconnects
+        - Better suited to hybrid CPU+GPU codes and scaling to multiple nodes than JADE
+---
+- Options (continued)
+    - **Other Tier 2 facilities** (https://www.hpc-uk.ac.uk/facilities/)
+    - Tier 1 HPC facility: **Archer**
+    - **Cloud** (AWS, Azure, GCP etc)
         - Alces Flight - traditional HPC in the cloud
 
 ---
