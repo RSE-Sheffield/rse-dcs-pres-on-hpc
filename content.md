@@ -34,7 +34,7 @@ but...
 
   - Limited RAM
   - Basic CPU
-  - Limited num of cores
+  - Limited number of cores
   - Limited, fragile storage
   - Modest GPU
   - Limited network connection
@@ -50,7 +50,7 @@ but...
 ---
 ## HPC: how is it different?
 
-'HPC' == computer cluster with:
+'HPC': a computer cluster with:
   - Computing resources
     - many nodes
     - each with many cores, much RAM, maybe GPUs
@@ -74,26 +74,34 @@ but...
 - Iceberg: older UoS cluster (partly deprecated)
 
 ---
-## DCS HPC resources (now)
+## DCS HPC resources
 
   - Majority of nodes **public** (free at point of use)
-  - But DCS has some **private nodes** in ShARC:
+  - But DCS has some **private nodes** in Bessemer and ShARC:
     - Non-std hardware specs
     - Less contention (sometimes!)
-  - DCS node specs:
-     - 1x node with **8x NVIDIA P100 GPUs** & 512GB RAM (NB 1x GPU currently faulty)
-     - 8x nodes with **768GB RAM** each, 5 with 1TB SSDs
-     - 4x nodes with **32 cores** each
-     - [https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
+---
+### Bessemer DCS node specs 
+
+- 8x nodes with each with 
+  - **4x NVIDIA V100 GPUs**
+  - Fast NVLink interconnects between GPUs
+  - 192 GB RAM
+      [https://docs.hpc.shef.ac.uk/en/latest/bessemer/groupnodes/](https://docs.hpc.shef.ac.uk/en/latest/bessemer/groupnodes/)
 
 ---
-## DCS HPC resources (soon)
+### ShARC DCS group nodes
+- 1x node with 
+  - **8x NVIDIA P100 GPUs** (NB 1x GPU currently faulty)
+  - Fast NVLink interconnects between GPUs
+  - 512GB RAM
+- 8x nodes each with 
+  - **768GB RAM** 
+  - 5 with 1TB SSDs
+- 4x nodes each with 
+  - 32 cores
+      [https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/](https://docs.hpc.shef.ac.uk/en/latest/sharc/groupnodes/)
 
-### Bessemer
-
-- 8x GPU nodes for Bessemer 
-    - 4x NVIDIA V100 GPUs with NVLink 
-    - 192 GB RAM
 
 ---
 ## Cluster structure
@@ -125,19 +133,19 @@ Ask for more info
 ---
 ## Storage
 
-Location            | Shared? | Quota | B'ups? | Multi-HPC
-------------------- |:-------:| -----:|:------:|:---------:
-`/home/$USER`       | Y       | 10GB  | Y      | Y
-`/data/$USER`       | Y       | 100GB | Y      | Y
-`/fastdata/$USER`   | Y       | -     | N      | Y'
-`/scratch`          | N       | -     | N      | N
-`/shared/$PROJNAME` | Y       | 10TB  | N      | Y
+Location            | Shared? | Quota  | Backups? | Multi-HPC
+------------------- | :-----: | -----: | :------: | :-------:
+`/home/$USER`       | ✓       | 10 GB  | ✓        | ✓
+`/data/$USER`       | ✓       | 100 GB | ✓        | ✓
+`/fastdata/$USER`   | ✓       | -      | ✗        | ✓'
+`/scratch`          | ✗       | -      | ✗        | ✗
+`/shared/$PROJNAME` | ✓       | 10 TB  | ✗        | ✓
 
 ---
 ## Storage
 
 Location            | Remote access? | Speed | Suited to       
-------------------- |:-------------- |:----- |:---------------
+------------------- |:-------------: |:----- |:---------------
 `/home/$USER`       | SSH            | >     | Pers data       
 `/data/$USER`       | SSH            | >     | Pers data       
 `/fastdata/$USER`   | SSH            | >>>   | Tmp big files   
@@ -150,49 +158,55 @@ Location            | Remote access? | Speed | Suited to
 ---
 ## Running jobs
 
-- Users submit jobs to **Grid Engine** (SGE) job scheduler 
+- Users submit jobs to a **job scheduler** 
+    - e.g. Slurm (Bessemer) or SGE (ShARC/Iceberg)
     - A **distributed resource manager**
     - Not intuitive!
     - V. powerful
+--
 - Request 
     - **Interactive** or **batch** job
     - Run time (e.g. 2h or 4d)
     - Computational resources (cores, RAM, GPUs)
     - Access to private resources
     - Notifications
-- If request cannot be satisfied in ~60s
-    - Interactive jobs fail 
-    - Batch jobs start queueing
+--
+- Type of job
+  - Interactive sessions (if resources are available)
+  - Batch jobs (submit job to a queue)
 
 ---
 ## Example interactive session
 
 ```
-[me@mylaptop ~]$ ssh te1st@sharc.sheffield.ac.uk
+[me@mylaptop ~]$ ssh te1st@bessemer.sheffield.ac.uk
 ...
-[te1st@sharc-login1 ~]$ qrshx -P rse \
-                              -pe smp 2 \
-                              -l rmem=16G \
-                              -m bea \
-                              -M myemail@sheffield.ac.uk \
-                              -j y 
-[te1st@sharc-node121 ~]$ ./my_simulation_program --num-cores=2
+[te1st@bessemer-login1 ~]$ srun \
+  --partition=dcs-gpu-test \
+  --account=dcs-res \
+  --cpus-per-gpu=4 \
+  --mem-per-cpu=2G \
+  --gpus=1 \
+  --pty \
+  /bin/bash
+
+[te1st@bessemer-node030 ~]$ ./my_simulation_program --num-cores=4
 ...
 ```
 
 ---
-## Example batch job script
+## Example batch job script (Bessemer/Slurm)
 
-Create a shell script, `my-job-script.sh`:
+Create a shell script, `my-job-script.slurm`:
 
 ```bash
 #!/bin/bash
-#$ -P rse 
-#$ -pe smp 2 
-#$ -l rmem=16G 
-#$ -m bea 
-#$ -M myemail@sheffield.ac.uk
-#$ -j y 
+#SBATCH --partition=dcs-gpu
+#SBATCH --account=dcs-res
+#SBATCH --cpus-per-gpu=4
+#SBATCH --mem-per-gpu=2G
+#SBATCH --gpus=4
+#SBATCH --mail-user=me@sheffield.ac.uk
 
 ./my_simulation_program --num-cores=2
 ```
@@ -200,8 +214,8 @@ Create a shell script, `my-job-script.sh`:
 Then submit this to Grid Engine:
 
 ```console
-[me@mylaptop ~]$ ssh te1st@sharc.sheffield.ac.uk
-[te1st@sharc-login1 ~]$ qsub my-job-script.sh
+[me@mylaptop ~]$ ssh te1st@bessemer.sheffield.ac.uk
+[te1st@bessemer-login1 ~]$ qsub my-job-script.sh
 ```
 Now go home for dinner!
 
@@ -209,7 +223,7 @@ Now go home for dinner!
 ## After submitting a job
 
 You can then:
- - Wait for an email notification (success/abort)
+ - Wait for an email notification
  - Check status (running/queueing)
  - Cancel/amend job
 
@@ -265,7 +279,7 @@ All useful for e.g. provisioning/using complex Deep Learning software stacks!
 ---
 ## Optimisation and parallelisation
 
-- Laptop may be *faster* than single-core job on ShARC:
+- Laptop may be *faster* than single-core job on HPC:
     - CPUs in servers run at lower clock speeds
     - `.exe` may not exploit advanced CPU features
 
@@ -277,12 +291,12 @@ All useful for e.g. provisioning/using complex Deep Learning software stacks!
 ---
 ### Optimising for CPU architecture
 
-  - In ShARC most CPUs are Xeon Haswell 
-  - Haswell has support for hardware vectorisation
-  - and *fused add-multiply* (useful for matrix mult)
+  - In Bessemer and ShARC the CPUs support 
+    - **hardware vectorisation** (same instruction applied to multiple elements in memory)
+    - **fused add-multiply** (useful for matrix multplication)
   - Either use pre-compiled libraries that can dynamically use these
       - e.g. Intel Math Kernel Library (MKL)
-  - or compile to produce builds optimised for Haswell
+  - or compile to produce builds optimised for those CPUs
 
 ---
 ### CPU parallelism
@@ -325,7 +339,7 @@ All useful for e.g. provisioning/using complex Deep Learning software stacks!
 
 - Set of near identical tasks
 - Embarrassingly parallel
-- Scheduled separately by Grid Engine
+- Scheduled separately 
 - Which then packs out its schedule with them!
 - Great for sensitivity analyses
 
@@ -358,9 +372,9 @@ High-level APIs for working with large datasets, possibly out of core:
     - **JADE**: Tier 2 HPC facility for Deep Learning
         - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards (NVLINK between GPUs in nodes)
         - To see [£5.5M upgrade in 2020](https://www.hpcwire.com/off-the-wire/oxford-wins-5-5-million-epsrc-funding-for-hpc-will-lead-jade-2/) (**JADE 2**)
-    - **NICE19**: new N8 Tier 2 HPC facility for distributed DL/ML (summer/autumn 2020)
+    - **Bede**: new N8 Tier 2 HPC facility for distributed DL/ML (late 2020)
         - 32x IBM AC922 nodes (2x POWER9 CPU; 4x V100 GPU; NVLINK between GPUs and CPUs)
-        - 6x IBM IC922 nodes (6x with T4 TPUs; 2x with FPGAs)
+        - 4x IBM IC922 'inference' nodes with T4 GPUs 
         - 100Gbps Infiniband EDR interconnects
         - Better suited to hybrid CPU+GPU codes and scaling to multiple nodes than JADE
 ---
@@ -380,13 +394,14 @@ High-level APIs for working with large datasets, possibly out of core:
         * UNIX shell, Git, Python/R/MATLAB, relational databases...
     * and more advanced topics:
         * multithreading/multiprocessing, CUDA, deep learning...
-    * CiCS also offer training in C/C++, Fortran, Python, MATLAB and HPC
+    * IT Services also offer training in C/C++, Fortran, Python, MATLAB and HPC
 
 ---
 ## Learning more / getting help
 
+* **IT Services' helpdesk**
 * **Talks**
-    * RSE seminar series 
+    * LunchBytes talks
 * **Code Clinic**
     * Book an appointment to get help with a coding issue
 * **Hire an RSE** to help with your project(s)!
@@ -405,15 +420,16 @@ For more info (inc. **mailing list** and events schedule) see [https://rse.shef.
 ---
 ## The RSE team
 
-* 10 RSEs
+* 11 RSEs
 * Team kick-started by 2x EPSRC RSE fellowships
-* Based in Computer Science
-* Some current projects:
-    * High-performance **agent-based modelling** (CUDA)
-    * Deep learning and workflows for **NLP**
-    * MRI **image alignment** (registration) software (C++/PETSc)
-    * Agile **web apps** for visualising datasets (R/Shiny)
-    * Augmenting **cell modelling** software (C++/PETSc)
+* Based in Computer Science 
+* but work closely with IT Services
+* Some current and recent projects:
+  * High-performance **agent-based modelling** (CUDA)
+  * Deep learning and workflows for **NLP**
+  * MRI **image alignment** (registration) software (C++/PETSc)
+  * Agile **web apps** for visualising datasets (R/Shiny)
+  * Augmenting **cell modelling** software (C++)
 
 ---
 ## Getting in touch
