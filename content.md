@@ -211,11 +211,11 @@ Create a shell script, `my-job-script.slurm`:
 ./my_simulation_program --num-cores=2
 ```
 
-Then submit this to Grid Engine:
+Then submit this to Slurm:
 
 ```console
 [me@mylaptop ~]$ ssh te1st@bessemer.sheffield.ac.uk
-[te1st@bessemer-login1 ~]$ qsub my-job-script.sh
+[te1st@bessemer-login1 ~]$ sbatch my-job-script.sh
 ```
 Now go home for dinner!
 
