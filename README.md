@@ -4,3 +4,9 @@ Given by Will Furnass from
 the [University of Sheffield RSE team](https://rse.shef.ac.uk).
 
 Slides written using the wonderful [Remark.js](https://remarkjs.com/) library.
+
+Versions (git tags)
+ - [slt-cdt-2020](https://github.com/RSE-Sheffield/rse-dcs-pres-on-hpc/tree/slt-cdt-2020): presented to the 2020 intake of [SLT CDT][slt-cdt] students.
+ - [slt-cdt-2019](https://github.com/RSE-Sheffield/rse-dcs-pres-on-hpc/tree/slt-cdt-2019): presented to the 2019 intake of [SLT CDT][slt-cdt] students.
+
+[slt-cdt]: https://slt-cdt.ac.uk/
