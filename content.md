@@ -208,14 +208,17 @@ Create a shell script, `my-job-script.slurm`:
 #SBATCH --gpus=4
 #SBATCH --mail-user=me@sheffield.ac.uk
 
-./my_simulation_program --num-cores=2
+./my_simulation_program --num-cores=16
 ```
 
-Then submit this to Slurm:
+
+Copy this file to Bessemer
+then log on to Bessemer and 
+submit this to Slurm:
 
 ```console
 [me@mylaptop ~]$ ssh te1st@bessemer.sheffield.ac.uk
-[te1st@bessemer-login1 ~]$ sbatch my-job-script.sh
+[te1st@bessemer-login1 ~]$ sbatch my-job-script.slurm
 ```
 Now go home for dinner!
 
