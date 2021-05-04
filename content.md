@@ -1,7 +1,7 @@
 # High-Performance Computing at the University of Sheffield
 
 <div class="right">
-    <img src="images/rse-logoonly-stroke.png" width="50%" style="padding: 0 15px; float: right;"/>
+    <img src="images/rse-logoonly-stroke.png" width="35%" style="padding: 0 15px; float: right;"/>
 </div>
 
 Will Furnass
