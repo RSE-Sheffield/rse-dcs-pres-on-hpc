@@ -371,14 +371,14 @@ High-level APIs for working with large datasets, possibly out of core:
     - Want newer GPUs/processors?
 ---
 - Options
-    - **JADE**: Tier 2 HPC facility for Deep Learning
-        - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards (NVLINK between GPUs in nodes)
-        - To see [£5.5M upgrade in 2020](https://www.hpcwire.com/off-the-wire/oxford-wins-5-5-million-epsrc-funding-for-hpc-will-lead-jade-2/) (**JADE 2**)
+    - **JADE/JADE2**: Tier 2 HPC facilities for Deep Learning
+        - JADE: 22x DGX-1 systems: 22x 8x NVIDIA V100 cards (NVLINK between GPUs in nodes)
+        - JADE2 (pilot phase): similar to JADE but with 63 nodes instead of 22
     - **Bede**: new N8 Tier 2 HPC facility for distributed DL/ML
         - 32x IBM AC922 nodes (2x POWER9 CPU; 4x V100 GPU; NVLINK between GPUs and CPUs)
         - 4x IBM IC922 'inference' nodes with T4 GPUs 
         - 100Gbps Infiniband EDR interconnects
-        - Better suited to hybrid CPU+GPU codes and scaling to multiple nodes than JADE
+        - Better suited to hybrid CPU+GPU codes and scaling to multiple nodes than JADE/JADE2
 ---
 - Options (continued)
     - **Other Tier 2 facilities** (https://www.hpc-uk.ac.uk/facilities/)
