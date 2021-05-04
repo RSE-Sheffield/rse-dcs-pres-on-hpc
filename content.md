@@ -14,7 +14,7 @@ Research Software Engineering team, University of Sheffield
 ## Outline
 
  1. What is HPC? Why bother?
- 1. HPC at UoS
+ 1. HPC at TUOS
  1. Using HPC
  1. Further resources
 
@@ -64,7 +64,7 @@ but...
   - Linux OS + optimised research software
 
 ---
-## UoS Clusters
+## TUOS Clusters
 
 - Bessemer: 
     - Newest hardware
@@ -238,7 +238,7 @@ You can then:
  1. Submit larger jobs
 
 ---
-## Software on UoS HPC
+## Software on TUOS HPC
 
 ### Centrally-installed, optimised software
 
@@ -263,7 +263,7 @@ libs/cudnn/7.0/binary-cuda-9.1.85
 ```
 
 ---
-## Software on UoS HPC
+## Software on TUOS HPC
 
 ### Manage your own software
 
