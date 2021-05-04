@@ -71,7 +71,6 @@ but...
     - Best for single-node jobs
 - ShARC: 
     - Good for multi-node jobs as has high-bandwidth, low-latency interconnects
-- Iceberg: older UoS cluster (partly deprecated)
 
 ---
 ## DCS HPC resources
@@ -159,7 +158,7 @@ Location            | Remote access? | Speed | Suited to
 ## Running jobs
 
 - Users submit jobs to a **job scheduler** 
-    - e.g. Slurm (Bessemer) or SGE (ShARC/Iceberg)
+    - e.g. Slurm (Bessemer) or SGE (ShARC)
     - A **distributed resource manager**
     - Not intuitive!
     - V. powerful
@@ -375,7 +374,7 @@ High-level APIs for working with large datasets, possibly out of core:
     - **JADE**: Tier 2 HPC facility for Deep Learning
         - 22x DGX-1 systems: 22x 8x NVIDIA V100 cards (NVLINK between GPUs in nodes)
         - To see [£5.5M upgrade in 2020](https://www.hpcwire.com/off-the-wire/oxford-wins-5-5-million-epsrc-funding-for-hpc-will-lead-jade-2/) (**JADE 2**)
-    - **Bede**: new N8 Tier 2 HPC facility for distributed DL/ML (late 2020)
+    - **Bede**: new N8 Tier 2 HPC facility for distributed DL/ML
         - 32x IBM AC922 nodes (2x POWER9 CPU; 4x V100 GPU; NVLINK between GPUs and CPUs)
         - 4x IBM IC922 'inference' nodes with T4 GPUs 
         - 100Gbps Infiniband EDR interconnects
@@ -423,7 +422,7 @@ For more info (inc. **mailing list** and events schedule) see [https://rse.shef.
 ---
 ## The RSE team
 
-* 11 RSEs
+* 13.5 RSEs
 * Team kick-started by 2x EPSRC RSE fellowships
 * Based in Computer Science 
 * but work closely with IT Services
